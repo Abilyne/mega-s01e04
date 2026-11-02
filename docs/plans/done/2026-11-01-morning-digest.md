@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-11-01
 ---
 
 # Morning digest
@@ -77,3 +78,15 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issues
+
+| # | Issue | Plan section |
+|---|-------|--------------|
+| 1 | [Issue #1](https://github.com/Abilyne/mega-s01e04/issues/1) | §1 |
+| 2 | [Issue #2](https://github.com/Abilyne/mega-s01e04/issues/2) | §2a |
+| 3 | [Issue #3](https://github.com/Abilyne/mega-s01e04/issues/3) | §2b |
+| 4 | [Issue #4](https://github.com/Abilyne/mega-s01e04/issues/4) | §2c |
+| 5 | [Issue #5](https://github.com/Abilyne/mega-s01e04/issues/5) | §2d |
+| 6 | [Issue #6](https://github.com/Abilyne/mega-s01e04/issues/6) | §3 |
+| 7 | [Issue #7](https://github.com/Abilyne/mega-s01e04/issues/7) | §4 |
