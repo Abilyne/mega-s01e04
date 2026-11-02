@@ -33,7 +33,8 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-PORT="$port" pnpm start >"$scratch_dir/server.log" 2>&1 &
+cd "$repo_dir"
+LANE_MARKER="${LANE_MARKER:-}" PORT="$port" node --import tsx --env-file-if-exists=.env src/server.ts >"$scratch_dir/server.log" 2>&1 &
 server_pid=$!
 url="http://127.0.0.1:$port/digest/2026-10-28"
 for _ in {1..50}; do
