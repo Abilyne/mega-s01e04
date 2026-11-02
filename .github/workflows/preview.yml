@@ -1,0 +1,53 @@
+name: Preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      lane_marker:
+        description: Optional marker shown on the preview page
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.5.0
+          run_install: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Export the digest page
+        env:
+          LANE_MARKER: ${{ inputs.lane_marker }}
+        run: scripts/export-preview.sh "$RUNNER_TEMP/preview"
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/preview
+          retention-days: 1
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
